@@ -11,55 +11,52 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #e8f4f8;
             margin: 0;
         }
 
         .envelope-container {
             position: relative;
-            width: 250px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
         }
 
-        /* Envelope Flap */
+        /* Envelope base */
         .envelope {
             width: 100%;
             height: 100%;
-            background-color: #ffcc00;
-            border-radius: 15px;
+            background-color: #0051a2; /* Blue base */
             position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
         }
 
+        /* Envelope flap (triangle) */
         .envelope:before {
             content: '';
             position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background-color: #ffcc00;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        /* Envelope Flap Open */
-        .envelope.open:before {
-            top: -60px;
-            height: 60px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-bottom: 30px solid #fbbf24; /* Yellow flap */
+            transition: all 0.4s ease;
         }
 
         /* Prize message box */
         #prize-message {
             display: none;
             position: absolute;
-            top: 25%;
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
             padding: 20px;
-            background-color: #e1ffb1;
+            background-color: #fbbf24; /* Yellow */
             border-radius: 8px;
             text-align: center;
             font-size: 18px;
@@ -69,7 +66,19 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Animation for prize reveal */
+        /* Envelope opening effect */
+        .envelope.open {
+            background-color: #0051a2; /* Blue stays */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Envelope flap open effect */
+        .envelope.open:before {
+            top: -80px;
+            border-bottom: 50px solid #fbbf24; /* Yellow */
+        }
+
+        /* Prize message fade-in when envelope is opened */
         .envelope.open #prize-message {
             display: block;
             opacity: 1;
@@ -80,7 +89,7 @@
 
     <div class="envelope-container" onclick="revealPrize()">
         <div id="envelope" class="envelope">
-            <div id="prize-message">🎉 Congratulations! You've won a Free Lunch! 🍔</div>
+            <div id="prize-message">🎉 Your Prize is a Tumbler! Congrats 🍔</div>
         </div>
     </div>
 
