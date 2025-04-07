@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prize Reveal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #envelope {
+            width: 200px;
+            height: 120px;
+            background-color: #f2d1a1;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 40px solid #f2d1a1;
+        }
+
+        #prize-message {
+            display: none;
+            padding: 20px;
+            background-color: #ffeb3b;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="envelope" onclick="revealPrize()">
+        <div id="prize-message">Congratulations! You've won a free lunch!</div>
+    </div>
+
+    <script>
+        function revealPrize() {
+            document.getElementById('prize-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
