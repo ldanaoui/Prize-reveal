@@ -11,53 +11,84 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             background-color: #f0f0f0;
+            margin: 0;
         }
 
-        #envelope {
-            width: 200px;
-            height: 120px;
-            background-color: #f2d1a1;
+        .envelope-container {
             position: relative;
-            border-radius: 10px;
-            cursor: pointer;
+            width: 250px;
+            height: 150px;
         }
 
-        #envelope:before {
+        /* Envelope Flap */
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background-color: #ffcc00;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .envelope:before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -20px;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 40px solid #f2d1a1;
+            width: 100%;
+            height: 40px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
 
+        /* Envelope Flap Open */
+        .envelope.open:before {
+            top: -60px;
+            height: 60px;
+        }
+
+        /* Prize message box */
         #prize-message {
             display: none;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
             padding: 20px;
-            background-color: #ffeb3b;
+            background-color: #e1ffb1;
             border-radius: 8px;
             text-align: center;
             font-size: 18px;
             font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Animation for prize reveal */
+        .envelope.open #prize-message {
+            display: block;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <div id="envelope" onclick="revealPrize()">
-        <div id="prize-message">Congratulations! You've won a free lunch!</div>
+    <div class="envelope-container" onclick="revealPrize()">
+        <div id="envelope" class="envelope">
+            <div id="prize-message">🎉 Congratulations! You've won a Free Lunch! 🍔</div>
+        </div>
     </div>
 
     <script>
         function revealPrize() {
-            document.getElementById('prize-message').style.display = 'block';
+            const envelope = document.getElementById('envelope');
+            envelope.classList.toggle('open');
         }
     </script>
 </body>
 </html>
-
